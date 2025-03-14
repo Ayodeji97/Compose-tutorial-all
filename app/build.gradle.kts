@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.danzucker.jetpack_compose_learning"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.danzucker.jetpack_compose_learning"

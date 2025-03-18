@@ -1,6 +1,6 @@
 package com.danzucker.jetpack_compose_learning.basiclayout
 
-import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,29 +12,26 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.danzucker.jetpack_compose_learning.R
 import com.danzucker.jetpack_compose_learning.ui.theme.BackgroundColor
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
+
 @Composable
 fun BasicLayoutAssignment(
-    title: String = "Project X",
-    description: String = "Project X is a project management tool that helps you organize your work and collaborate with your team online.",
-    date: String = "Mar 5, 10:00",
+    title: String,
+    description: String,
+    date: String,
     modifier: Modifier = Modifier
 ) {
 
@@ -90,7 +87,7 @@ fun BasicLayoutAssignment(
         Text(
             text = date,
             fontSize = 18.sp,
-            color = Color.White,
+            color = Color.White.copy(alpha = 0.8f),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),
@@ -105,6 +102,10 @@ fun BasicLayoutAssignment(
 @Composable
 private fun BasicLayoutAssignmentPreview() {
     Jetpack_Compose_LearningTheme {
-        BasicLayoutAssignment()
+        BasicLayoutAssignment(
+            title = "Project X",
+            description = "Project X is a project management tool that helps you organize your work and collaborate with your team online.",
+            date = "Mar 5, 10:00",
+        )
     }
 }

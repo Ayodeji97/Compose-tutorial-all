@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.danzucker.jetpack_compose_learning.basiclayout.HotelManagementScreen
+import com.danzucker.jetpack_compose_learning.statemanagement.assignment.TodoScreenRoot
 import com.danzucker.jetpack_compose_learning.statemanagement.numberguess.NumberGuessScreenRoot
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
@@ -27,7 +28,12 @@ class MainActivity : ComponentActivity() {
 //                           .padding(innerPadding)
 //                   )
 
-                    NumberGuessScreenRoot(
+//                    NumberGuessScreenRoot(
+//                        modifier = Modifier
+//                            .padding(innerPadding)
+//                    )
+
+                    TodoScreenRoot(
                         modifier = Modifier
                             .padding(innerPadding)
                     )

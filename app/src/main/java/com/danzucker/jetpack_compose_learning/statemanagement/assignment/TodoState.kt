@@ -1,7 +1,14 @@
 package com.danzucker.jetpack_compose_learning.statemanagement.assignment
 
 data class TodoState(
-    val title: String = "Bring out the trash",
-    val description: String = "Better do this before wife comes home.",
-    val isChecked: Boolean = false
+    val titleText: String = "",
+    val descriptionText: String = "",
+    val todoList: List<Todo> = emptyList()
+)
+
+data class Todo(
+    val id: Int = 0,
+    val title: String = "",
+    val description: String = "",
+    val isChecked: Boolean = false,
 )

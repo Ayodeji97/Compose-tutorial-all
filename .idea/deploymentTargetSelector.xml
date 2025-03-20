@@ -5,19 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="NavigationRailsDemoPreview">
+      <SelectionState runConfigName="StateHoistingPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="WindowSizeClassDemoPreview">
+      <SelectionState runConfigName="StateHoistingDemoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="HotelManagementScreenPreview">
+      <SelectionState runConfigName="NumberGuessScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="HotelFadedBannerPreview">
+      <SelectionState runConfigName="TodoScreenPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="HotelManagementTabletScreenPreview">
+      <SelectionState runConfigName="TodoScreenPreview (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

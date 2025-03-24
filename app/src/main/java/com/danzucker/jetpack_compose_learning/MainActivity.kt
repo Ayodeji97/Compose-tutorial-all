@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.danzucker.jetpack_compose_learning.advancelayout.SizeModifiersDemo
 import com.danzucker.jetpack_compose_learning.basiclayout.HotelManagementScreen
 import com.danzucker.jetpack_compose_learning.modifier.FocusManagementModifier
 import com.danzucker.jetpack_compose_learning.modifier.SpacingModifierDemo
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Jetpack_Compose_LearningTheme {
 
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                SizeModifiersDemo()
+              //  Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                   HotelManagementScreen(
 //                       modifier = Modifier
 //                           .padding(innerPadding)
@@ -52,13 +54,13 @@ class MainActivity : ComponentActivity() {
 //                            .padding(innerPadding)
 //                    )
 
-                    SpacingModifierDemo(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .consumeWindowInsets(innerPadding)
-                            //.padding(innerPadding)
-                    )
-                }
+//                    SpacingModifierDemo(
+//                        modifier = Modifier
+//                            .padding(innerPadding)
+//                            .consumeWindowInsets(innerPadding)
+//                            //.padding(innerPadding)
+//                    )
+               // }
             }
         }
     }

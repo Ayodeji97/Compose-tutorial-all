@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.danzucker.jetpack_compose_learning.advancelayout.LazyColumnDemo
 import com.danzucker.jetpack_compose_learning.advancelayout.SizeModifiersDemo
 import com.danzucker.jetpack_compose_learning.advancelayout.SizePositionModifier
 import com.danzucker.jetpack_compose_learning.advancelayout.utils.SubComposePagedRow
@@ -47,64 +48,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Jetpack_Compose_LearningTheme {
-
-                // SizeModifiersDemo()
-                //SizePositionModifier()
-                var page by remember { mutableIntStateOf(0) }
-
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
-                    Column(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        SubComposePagedRow(
-                            page = page,
-                        ) {
-                            (1..100).forEach {
-                                Box(
-                                    modifier = Modifier
-                                        .height(100.dp)
-                                        .width(Random.nextInt(300).dp)
-                                        .background(Color(Random.nextInt()))
-                                )
-                            }
-                        }
-
-                        Button(onClick = { page++ }) {
-                            Text(text = "Next Page")
-                        }
-
-                    }
+                Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) { innerPadding ->
+                    LazyColumnDemo(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                    )
                 }
-
-              //  Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                   HotelManagementScreen(
-//                       modifier = Modifier
-//                           .padding(innerPadding)
-//                   )
-
-//                    NumberGuessScreenRoot(
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                    )
-
-//                    TodoScreenRoot(
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                    )
-
-//                    FocusManagementModifier(
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                    )
-
-//                    SpacingModifierDemo(
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                            .consumeWindowInsets(innerPadding)
-//                            //.padding(innerPadding)
-//                    )
-               // }
             }
         }
     }

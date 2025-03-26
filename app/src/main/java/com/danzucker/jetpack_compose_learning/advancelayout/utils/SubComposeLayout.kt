@@ -1,4 +1,4 @@
-package com.danzucker.jetpack_compose_learning.advancelayout
+package com.danzucker.jetpack_compose_learning.advancelayout.utils
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,37 +9,49 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
+import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastMaxOfOrNull
+import com.danzucker.jetpack_compose_learning.advancelayout.PagedRow
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
 /**
- * PagedRow is a custom layout that lays out its children in a row to fill in the available width or
- * move to the next page if the width is not enough and the page is not exceeded.
+ * While the normal layout phase of a normal layout is - measure children -> measure itself -> place children -> layout itself
+ * SubcomposeLayout is a special layout that allows you to measure and layout children in a custom way. -
+ * In the subcompose phase, Measure children -> subcompose -> Measure the layout itself -> place children -> layout itself
  */
+
 @Composable
-fun PagedRow(
+fun SubComposePagedRow(
     page: Int,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
 
-    Layout(
-        content = content,
+    SubcomposeLayout (
         modifier = modifier
-    ) { measurables, constraints ->
-        val placeables = measurables.map {
-            it.measure(constraints)
-        }
+    ) { constraints ->
 
         val pages = mutableListOf<List<Placeable>>()
         var currentPage = mutableListOf<Placeable>()
         var currentPageWidth = 0
 
-        placeables.fastForEach { placeable ->
+
+        val measurables = subcompose(
+            slotId = "content",
+            content = content
+        )
+
+        var counter = 0
+        for (measurable in measurables) {
+            val placeable = measurable.measure(constraints)
+            counter++
             if (currentPageWidth + placeable.width > constraints.maxWidth) {
+                if (pages.size == page) {
+                    break
+                }
                 pages.add(currentPage)
                 currentPage = mutableListOf()
                 currentPageWidth = 0
@@ -47,6 +59,9 @@ fun PagedRow(
             currentPage.add(placeable)
             currentPageWidth += placeable.width
         }
+
+        println("We measured $counter composables")
+
 
         if (currentPage.isNotEmpty()) {
             pages.add(currentPage)
@@ -71,9 +86,11 @@ fun PagedRow(
     }
 }
 
+
+
 @Preview
 @Composable
-private fun PagedRowPreview() {
+private fun SubComposePagedRowPreview() {
     Jetpack_Compose_LearningTheme {
         PagedRow(
             page = 0

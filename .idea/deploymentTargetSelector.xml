@@ -5,19 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="StateHoistingDemoPreview">
+      <SelectionState runConfigName="SpacingModifierDemoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="NumberGuessScreenPreview">
+      <SelectionState runConfigName="MeasurementDemoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TodoScreenPreview">
+      <SelectionState runConfigName="SizeModifiersDemoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TodoScreenPreview (1)">
+      <SelectionState runConfigName="IntrinsicSizeDemoPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ShapeModifierDemoPreview">
+      <SelectionState runConfigName="BoxConstraintsPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

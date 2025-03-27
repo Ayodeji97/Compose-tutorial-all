@@ -27,10 +27,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.danzucker.jetpack_compose_learning.advancelayout.LazyColumnDemo
+import com.danzucker.jetpack_compose_learning.advancelayout.LazyMindMap
+import com.danzucker.jetpack_compose_learning.advancelayout.MindMapItem
 import com.danzucker.jetpack_compose_learning.advancelayout.SizeModifiersDemo
 import com.danzucker.jetpack_compose_learning.advancelayout.SizePositionModifier
 import com.danzucker.jetpack_compose_learning.advancelayout.utils.SubComposePagedRow
@@ -52,8 +56,56 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
-                    LazyColumnDemo(
+//                    LazyColumnDemo(
+//                        modifier = Modifier
+//                            .padding(innerPadding)
+//                    )
+                    val mindMindItems = remember {
+                        listOf(
+                            MindMapItem(
+                                title = "First Item",
+                                percentageOffset = Offset(
+                                    x = 0f,
+                                    y = 0f
+                                )
+                            ),
+
+                            MindMapItem(
+                                title = "Second Item",
+                                percentageOffset = Offset(
+                                    x = 1f,
+                                    y = 0f
+                                )
+                            ),
+
+                            MindMapItem(
+                                title = "Third Item",
+                                percentageOffset = Offset(
+                                    x = 0.3f,
+                                    y = -0.5f
+                                )
+                            ),
+
+                            MindMapItem(
+                                title = "Fourth Item",
+                                percentageOffset = Offset(
+                                    x = -0.2f,
+                                    y = 0.5f
+                                )
+                            ),
+                        )
+                    }
+                    var mindMapOffset by remember {
+                        mutableStateOf(IntOffset.Zero)
+                    }
+                    LazyMindMap(
+                        items = mindMindItems,
+                        mindMapOffset = mindMapOffset,
+                        onDrag = { delta ->
+                            mindMapOffset += delta
+                        },
                         modifier = Modifier
+                            .fillMaxSize()
                             .padding(innerPadding)
                     )
                 }

@@ -76,7 +76,7 @@ fun PagedRow(
 private fun PagedRowPreview() {
     Jetpack_Compose_LearningTheme {
         PagedRow(
-            page = 0
+            page = 2
         ) {
             Box(
                 modifier = Modifier
@@ -94,16 +94,46 @@ private fun PagedRowPreview() {
 
             Box(
                 modifier = Modifier
-                    .width(75.dp)
+                    .width(150.dp)
                     .height(100.dp)
                     .background(Color.Green)
             )
 
             Box(
                 modifier = Modifier
-                    .width(300.dp)
+                    .width(100.dp)
                     .height(100.dp)
                     .background(Color.Blue)
+            )
+
+            Box(
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(100.dp)
+                    .background(Color.Cyan)
+            )
+
+            Box(
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(100.dp)
+                    .background(Color.Magenta)
+            )
+
+
+            Box(
+                modifier = Modifier
+                    .width(75.dp)
+                    .height(100.dp)
+                    .background(Color.DarkGray)
+            )
+
+
+            Box(
+                modifier = Modifier
+                    .width(75.dp)
+                    .height(100.dp)
+                    .background(Color.Black)
             )
         }
     }

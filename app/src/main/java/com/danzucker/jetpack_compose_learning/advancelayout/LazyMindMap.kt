@@ -53,7 +53,7 @@ fun LazyMindMap(
 ) {
 
     LazyLayout(
-        modifier = Modifier
+        modifier = modifier
             .draggable2D(
                 state = rememberDraggable2DState { delta ->
                     onDrag(delta.round())
@@ -71,7 +71,7 @@ fun LazyMindMap(
                         textAlign = TextAlign.Center,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 2,
-                        modifier = Modifier
+                        modifier = itemModifier
                             .widthIn(min = 50.dp, max = 150.dp)
                             .heightIn(min = 50.dp, max = 150.dp)
                             .border(
@@ -101,14 +101,14 @@ fun LazyMindMap(
             val maxItemWidth = 150.dp.roundToPx()
             val maxItemHeight = 150.dp.roundToPx()
 
-            val extentedItemBounds = IntRect(
+            val extendedItemBounds = IntRect(
                 left = finalXPosition - maxItemWidth / 2,
                 top = finalYPosition - maxItemHeight / 2,
                 right = finalXPosition + 3 * (maxItemWidth / 2),
                 bottom = finalYPosition + 3 * (maxItemHeight / 2),
             )
 
-            if(visibleArea.overlaps(extentedItemBounds)) {
+            if(visibleArea.overlaps(extendedItemBounds)) {
                 val placeable = measure(
                     index = index,
                     constraints = Constraints()

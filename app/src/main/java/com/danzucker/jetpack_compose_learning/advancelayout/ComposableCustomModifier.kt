@@ -77,6 +77,15 @@ class NegativePaddingNode(
     }
 }
 
+
+/**
+ * There are some problem with solution
+ * 1. The use of local density which is like a global variable can leads to some inconsistency
+ * 2. When a compose function return a value, it will never be skipped, that is it will always be recomposed
+ * even though it's state doesn't change
+ *
+ * 3. This function can only be use only inside a composable function.
+ */
 @Composable
 fun Modifier.negativePadding(horizontal: Dp): Modifier {
     val density = LocalDensity.current

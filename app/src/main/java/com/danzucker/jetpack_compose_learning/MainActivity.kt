@@ -5,11 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.danzucker.jetpack_compose_learning.launcheffect.DisposableEffectDemo
 import com.danzucker.jetpack_compose_learning.launcheffect.LaunchEffectDemo
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
@@ -24,62 +32,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
-                    LaunchEffectDemo()
-//                    val mindMindItems = remember {
-//                        listOf(
-//                            MindMapItemExtension(
-//                                absoluteOffset = Offset(
-//                                    x = 0f,
-//                                    y = 0f
-//                                ),
-//                                constraints = Constraints(
-//                                    minWidth = 100,
-//                                    maxWidth = 1000,
-//                                    minHeight = 100,
-//                                    maxHeight = 400
-//                                ),
-//                                content = {
-//                                    SimpleTodoItem()
-//                                }
-//                            ),
-//
-//                            MindMapItemExtension(
-//                                absoluteOffset = Offset(
-//                                    x = 1000f,
-//                                    y = 1500f
-//                                ),
-//                                constraints = Constraints(
-//                                    minWidth = 600,
-//                                    maxWidth = 1000,
-//                                    minHeight = 150,
-//                                    maxHeight = 800
-//                                ),
-//                                content = {
-//                                    CounterComposable()
-//                                }
-//                            ),
-//                        )
-//                    }
-//
-//                    var mindMapOffset by remember {
-//                        mutableStateOf(IntOffset.Zero)
-//                    }
-//
-//                    LazyMindMapExtension(
-//                        items = mindMindItems,
-//                        mindMapOffset = mindMapOffset,
-//                        onDrag = { delta ->
-//                            mindMapOffset += delta
-//                        },
-//                        itemModifier = Modifier
-//                            .border(
-//                                width = 2.dp,
-//                                color = Color.LightGray
-//                            ),
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .padding(innerPadding)
-//                    )
+                    //LaunchEffectDemo()
+
+                    var toggle by remember {
+                        mutableStateOf(false)
+                    }
+                    if (!toggle) {
+                        DisposableEffectDemo()
+                    }
+
+                    Button(onClick = {
+                        toggle = !toggle
+                    }, modifier = Modifier
+                        .padding(innerPadding)
+                        .fillMaxSize()
+                        .wrapContentSize()
+
+                    ) {
+                        Text(text = "Toggle")
+                    }
                 }
             }
         }

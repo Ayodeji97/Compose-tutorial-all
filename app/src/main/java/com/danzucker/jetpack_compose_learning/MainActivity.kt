@@ -32,25 +32,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
-                    //LaunchEffectDemo()
+                    LaunchEffectDemo()
 
-                    var toggle by remember {
-                        mutableStateOf(false)
-                    }
-                    if (!toggle) {
-                        DisposableEffectDemo()
-                    }
-
-                    Button(onClick = {
-                        toggle = !toggle
-                    }, modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize()
-                        .wrapContentSize()
-
-                    ) {
-                        Text(text = "Toggle")
-                    }
+//                    var toggle by remember {
+//                        mutableStateOf(false)
+//                    }
+//                    if (!toggle) {
+//                        DisposableEffectDemo()
+//                    }
+//
+//                    Button(onClick = {
+//                        toggle = !toggle
+//                    }, modifier = Modifier
+//                        .padding(innerPadding)
+//                        .fillMaxSize()
+//                        .wrapContentSize()
+//
+//                    ) {
+//                        Text(text = "Toggle")
+//                    }
                 }
             }
         }

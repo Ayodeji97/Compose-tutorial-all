@@ -1,13 +1,17 @@
 package com.danzucker.jetpack_compose_learning.advancelayout
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.draggable2D
 import androidx.compose.foundation.gestures.rememberDraggable2DState
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
@@ -21,8 +25,9 @@ import kotlin.math.roundToInt
 
 
 data class MindMapItemExtension(
+    val absoluteOffset: Offset,
+    val constraints: Constraints,
     val content: @Composable () -> Unit,
-    val percentageOffset: Offset
 )
 
 data class ProcessedMindMapItemExtension(
@@ -56,7 +61,16 @@ fun LazyMindMapExtension(
 
                 @Composable
                 override fun Item(index: Int, key: Any) {
-                    items[index].content()
+                    Box(
+                        modifier = itemModifier
+                            .border(
+                                width = 2.dp,
+                                color = Color.LightGray
+                            )
+                            .padding(16.dp)
+                    ) {
+                        items[index].content()
+                    }
                 }
             }
         }
@@ -72,11 +86,11 @@ fun LazyMindMapExtension(
         )
 
         val visibleItems = items.fastMapIndexedNotNull { index, item ->
-            val finalXPosition = (item.percentageOffset.x * layoutWidth + layoutWidth / 2 + mindMapOffset.x).roundToInt()
-            val finalYPosition = (item.percentageOffset.y * layoutHeight + layoutHeight / 2 + mindMapOffset.y).roundToInt()
+            val finalXPosition = (item.absoluteOffset.x + mindMapOffset.x).roundToInt()
+            val finalYPosition = (item.absoluteOffset.y + mindMapOffset.y).roundToInt()
 
-            val maxItemWidth = 150.dp.roundToPx()
-            val maxItemHeight = 150.dp.roundToPx()
+            val maxItemWidth = item.constraints.maxWidth
+            val maxItemHeight = item.constraints.maxHeight
 
             val extendedItemBounds = IntRect(
                 left = finalXPosition - maxItemWidth / 2,
@@ -85,10 +99,10 @@ fun LazyMindMapExtension(
                 bottom = finalYPosition + 3 * (maxItemHeight / 2),
             )
 
-            if(visibleArea.overlaps(extendedItemBounds)) {
+            if (visibleArea.overlaps(extendedItemBounds)) {
                 val placeable = measure(
                     index = index,
-                    constraints = Constraints()
+                    constraints = item.constraints
                 ).first()
 
                 ProcessedMindMapItemExtension(

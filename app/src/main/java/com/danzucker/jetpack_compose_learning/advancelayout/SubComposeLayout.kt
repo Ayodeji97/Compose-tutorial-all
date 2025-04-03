@@ -1,4 +1,4 @@
-package com.danzucker.jetpack_compose_learning.advancelayout.utils
+package com.danzucker.jetpack_compose_learning.advancelayout
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -7,14 +7,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastMaxOfOrNull
-import com.danzucker.jetpack_compose_learning.advancelayout.PagedRow
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
 /**

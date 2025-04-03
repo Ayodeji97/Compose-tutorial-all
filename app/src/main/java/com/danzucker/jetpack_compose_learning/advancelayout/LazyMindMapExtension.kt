@@ -4,22 +4,38 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.draggable2D
 import androidx.compose.foundation.gestures.rememberDraggable2DState
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
+import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Placeable
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastMapIndexedNotNull
+import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 import kotlin.math.roundToInt
 
 
@@ -35,7 +51,6 @@ data class ProcessedMindMapItemExtension(
     val finalXPosition: Int,
     val finalYPosition: Int
 )
-
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -67,7 +82,8 @@ fun LazyMindMapExtension(
                                 width = 2.dp,
                                 color = Color.LightGray
                             )
-                            .padding(16.dp)
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
                     ) {
                         items[index].content()
                     }
@@ -78,6 +94,9 @@ fun LazyMindMapExtension(
         val layoutWidth = constraints.maxWidth
         val layoutHeight = constraints.maxHeight
 
+        val centerX = layoutWidth / 2
+        val centerY = layoutHeight / 2
+
         val visibleArea = IntRect(
             left = 0,
             top = 0,
@@ -86,8 +105,8 @@ fun LazyMindMapExtension(
         )
 
         val visibleItems = items.fastMapIndexedNotNull { index, item ->
-            val finalXPosition = (item.absoluteOffset.x + mindMapOffset.x).roundToInt()
-            val finalYPosition = (item.absoluteOffset.y + mindMapOffset.y).roundToInt()
+            val finalXPosition = (item.absoluteOffset.x + mindMapOffset.x + centerX).roundToInt()
+            val finalYPosition = (item.absoluteOffset.y + mindMapOffset.y + centerY).roundToInt()
 
             val maxItemWidth = item.constraints.maxWidth
             val maxItemHeight = item.constraints.maxHeight
@@ -123,5 +142,102 @@ fun LazyMindMapExtension(
                 )
             }
         }
+    }
+}
+
+
+
+@Composable
+fun SimpleTodoItem(
+    modifier: Modifier = Modifier
+) {
+
+    var checked by remember {
+        mutableStateOf(false)
+    }
+
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+
+            Text(
+                text = "Mind map todo item",
+            )
+
+            Text(
+                text = "Mind map todo description",
+            )
+        }
+
+        Checkbox(
+            checked = checked,
+            onCheckedChange = {
+                checked = it
+            }
+        )
+    }
+}
+
+@Composable
+fun CounterComposable(
+    modifier: Modifier = Modifier
+) {
+    var count by remember {
+        mutableIntStateOf(0)
+    }
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(
+            text = count.toString(),
+            fontSize = 40.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(onClick = {
+                count--
+            }) {
+                Text("Dec")
+            }
+
+            Button(onClick = {
+                count++
+            }) {
+                Text("Inc")
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun CounterComposablePreview() {
+    Jetpack_Compose_LearningTheme {
+        CounterComposable()
+    }
+}
+
+
+
+@Preview
+@Composable
+private fun SimpleTodoItemPreview() {
+    Jetpack_Compose_LearningTheme {
+        SimpleTodoItem(
+            modifier = Modifier
+
+        )
     }
 }

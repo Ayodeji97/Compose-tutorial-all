@@ -1,26 +1,14 @@
-@file:OptIn(ExperimentalFoundationApi::class)
-
 package com.danzucker.jetpack_compose_learning.advancelayout
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.draggable2D
 import androidx.compose.foundation.gestures.rememberDraggable2DState
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.layout.LazyLayout
 import androidx.compose.foundation.lazy.layout.LazyLayoutItemProvider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Placeable
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntRect
@@ -28,30 +16,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.round
 import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastMapIndexedNotNull
-import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 import kotlin.math.roundToInt
 
-data class MindMapItem(
-    val title: String,
+
+
+data class MindMapItemExtension(
+    val content: @Composable () -> Unit,
     val percentageOffset: Offset
 )
 
-data class ProcessedMindMapItem(
+data class ProcessedMindMapItemExtension(
     val placeable: Placeable,
     val finalXPosition: Int,
     val finalYPosition: Int
 )
 
 
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LazyMindMap(
-    items: List<MindMapItem>,
+fun LazyMindMapExtension(
+    items: List<MindMapItemExtension>,
     mindMapOffset: IntOffset = IntOffset.Zero,
     onDrag: (delta: IntOffset) -> Unit,
     itemModifier: Modifier = Modifier,
     modifier: Modifier = Modifier
 ) {
-
     LazyLayout(
         modifier = modifier
             .draggable2D(
@@ -66,20 +56,7 @@ fun LazyMindMap(
 
                 @Composable
                 override fun Item(index: Int, key: Any) {
-                    Text(
-                        text = items[index].title,
-                        textAlign = TextAlign.Center,
-                        overflow = TextOverflow.Ellipsis,
-                        maxLines = 2,
-                        modifier = itemModifier
-                            .widthIn(min = 50.dp, max = 150.dp)
-                            .heightIn(min = 50.dp, max = 150.dp)
-                            .border(
-                                width = 2.dp,
-                                color = Color.LightGray
-                            )
-                            .padding(16.dp)
-                    )
+                    items[index].content()
                 }
             }
         }
@@ -114,7 +91,7 @@ fun LazyMindMap(
                     constraints = Constraints()
                 ).first()
 
-                ProcessedMindMapItem(
+                ProcessedMindMapItemExtension(
                     placeable = placeable,
                     finalXPosition = finalXPosition,
                     finalYPosition = finalYPosition,
@@ -134,14 +111,3 @@ fun LazyMindMap(
         }
     }
 }
-
-//@Preview
-//@Composable
-//private fun LazyMindMapPreview() {
-//    Jetpack_Compose_LearningTheme {
-//        LazyMindMap(
-//            mindMapOffset = 0,
-//            onDrag = {},
-//        )
-//    }
-//}

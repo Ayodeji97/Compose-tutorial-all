@@ -11,7 +11,7 @@
       <SelectionState runConfigName="SubComposePagedRowPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="OverflowLayoutPreview">
+      <SelectionState runConfigName="MyListPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

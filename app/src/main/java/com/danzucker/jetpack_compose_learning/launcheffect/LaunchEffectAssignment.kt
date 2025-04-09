@@ -22,6 +22,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -32,6 +34,7 @@ class LaunchEffectViewModel : ViewModel() {
     val lazyListState = LazyListState()
 
     init {
+
         viewModelScope.launch {
             snapshotFlow {
                 with(lazyListState.layoutInfo) {
@@ -50,9 +53,33 @@ class LaunchEffectViewModel : ViewModel() {
                 }
 
         }
-    }
 
+
+
+        /**
+         * Or this
+         */
+        /**
+        snapshotFlow {
+            with(lazyListState.layoutInfo) {
+                if (totalItemsCount == 0) {
+                    true
+                } else visibleItemsInfo.lastOrNull()?.index == totalItemsCount - 1
+            }
+        }
+            .distinctUntilChanged()
+            .onEach {
+                if (it) {
+                    snackbarHostState.showSnackbar(
+                        message = "Scrolled to bottom"
+                    )
+                }
+            }
+            .launchIn(viewModelScope)
+        **/
+    }
 }
+
 
 @Composable
 fun LaunchEffectAssignment(

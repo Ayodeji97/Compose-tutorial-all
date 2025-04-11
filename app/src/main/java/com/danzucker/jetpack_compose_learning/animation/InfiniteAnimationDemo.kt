@@ -72,7 +72,7 @@ fun InfiniteAnimationDemo(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun InfiniteAnimationDemoPreview() {
-    Jetpack_Compose_LearningTheme {
-        InfiniteAnimationDemo()
-    }
+//    Jetpack_Compose_LearningTheme {
+//        InfiniteAnimationDemo()
+//    }
 }

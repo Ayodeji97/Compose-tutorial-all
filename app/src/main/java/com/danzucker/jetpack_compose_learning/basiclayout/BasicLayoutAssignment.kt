@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.danzucker.jetpack_compose_learning.ui.theme.BackgroundColor
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
 
 
@@ -41,7 +41,7 @@ fun BasicLayoutAssignment(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .background(BackgroundColor, shape = RoundedCornerShape(5.dp))
+            .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(5.dp))
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {

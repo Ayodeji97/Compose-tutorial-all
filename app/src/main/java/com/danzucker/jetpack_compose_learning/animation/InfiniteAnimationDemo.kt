@@ -10,11 +10,13 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -64,15 +66,33 @@ fun InfiniteAnimationDemo(modifier: Modifier = Modifier) {
                drawCircle(
                    color = infiniteColor
                )
+
+               // Draw a triangle
+//                drawPath(
+//                     path = Path().apply {
+//                          moveTo(size.width / 2, 0f) // top center
+//                          lineTo(0f, size.height) // bottom left
+//                          lineTo(size.width, size.height) // bottom right
+//                          close()
+//                     },
+//                     color = Color.Green
+//                )
            }
 
    )
+}
+
+val triangleShape = GenericShape { size, _ ->
+    moveTo(size.width / 2f, 0f)
+    lineTo(size.width, size.height)
+    lineTo(0f, size.height)
+    close()
 }
 
 @Preview
 @Composable
 private fun InfiniteAnimationDemoPreview() {
 //    Jetpack_Compose_LearningTheme {
-//        InfiniteAnimationDemo()
+       // InfiniteAnimationDemo()
 //    }
 }

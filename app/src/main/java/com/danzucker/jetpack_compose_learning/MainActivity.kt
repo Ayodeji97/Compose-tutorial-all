@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalComposeUiApi::class)
+
 package com.danzucker.jetpack_compose_learning
 
 import android.os.Bundle
@@ -15,7 +17,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.tooling.preview.Preview
 import com.danzucker.jetpack_compose_learning.animation.LookaheadLayoutAnimation
 import com.danzucker.jetpack_compose_learning.launcheffect.DisposableEffectDemo
@@ -40,15 +45,16 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize()
+                        .semantics {
+                            testTagsAsResourceId = true
+                        }
                 ) { innerPadding ->
-//                    DeferredStateReads(
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                    )
-                    OverdrawDemo(
+
+                    LazyListPerformance(
                         modifier = Modifier
                             .padding(innerPadding)
                     )
+
                 }
             }
         }

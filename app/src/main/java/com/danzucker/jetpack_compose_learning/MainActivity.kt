@@ -25,6 +25,7 @@ import com.danzucker.jetpack_compose_learning.performanceoptimization.DeferredSt
 import com.danzucker.jetpack_compose_learning.performanceoptimization.KeysCustomLayout
 import com.danzucker.jetpack_compose_learning.performanceoptimization.LazyListPerformance
 import com.danzucker.jetpack_compose_learning.performanceoptimization.MyScreen
+import com.danzucker.jetpack_compose_learning.performanceoptimization.OverdrawDemo
 import com.danzucker.jetpack_compose_learning.performanceoptimization.mainsafety.BitmapCompressor
 import com.danzucker.jetpack_compose_learning.performanceoptimization.mainsafety.PhotoPickerScreen
 import com.danzucker.jetpack_compose_learning.ui.theme.Jetpack_Compose_LearningTheme
@@ -40,7 +41,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
-                    DeferredStateReads(
+//                    DeferredStateReads(
+//                        modifier = Modifier
+//                            .padding(innerPadding)
+//                    )
+                    OverdrawDemo(
                         modifier = Modifier
                             .padding(innerPadding)
                     )

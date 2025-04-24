@@ -21,6 +21,8 @@ import com.danzucker.jetpack_compose_learning.animation.LookaheadLayoutAnimation
 import com.danzucker.jetpack_compose_learning.launcheffect.DisposableEffectDemo
 import com.danzucker.jetpack_compose_learning.launcheffect.LaunchEffectAssignment
 import com.danzucker.jetpack_compose_learning.launcheffect.LaunchEffectDemo
+import com.danzucker.jetpack_compose_learning.performanceoptimization.DeferredStateReads
+import com.danzucker.jetpack_compose_learning.performanceoptimization.KeysCustomLayout
 import com.danzucker.jetpack_compose_learning.performanceoptimization.LazyListPerformance
 import com.danzucker.jetpack_compose_learning.performanceoptimization.MyScreen
 import com.danzucker.jetpack_compose_learning.performanceoptimization.mainsafety.BitmapCompressor
@@ -38,23 +40,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) { innerPadding ->
-
-//                    LookaheadLayoutAnimation(
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                    LazyListPerformance(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .padding(innerPadding)
-//                    )
-
-//                    PhotoPickerScreen(
-//                        compressor = BitmapCompressor(this),
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .padding(innerPadding)
-//                    )
-
+                    DeferredStateReads(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                    )
                 }
             }
         }

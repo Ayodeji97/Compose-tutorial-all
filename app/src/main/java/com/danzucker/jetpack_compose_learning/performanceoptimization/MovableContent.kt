@@ -47,6 +47,10 @@ fun MovableContent(modifier: Modifier = Modifier) {
             )
         )
     }
+
+    /**
+     * I will use this rarely, because it doesn't have huge performance impact - Just one composable
+     */
     val movableProfileImage = remember {
         movableContentOf {
             ProfileImage(profile.pictureResId)

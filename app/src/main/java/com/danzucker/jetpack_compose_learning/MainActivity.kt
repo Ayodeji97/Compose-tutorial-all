@@ -29,6 +29,8 @@ import com.danzucker.jetpack_compose_learning.launcheffect.LaunchEffectDemo
 import com.danzucker.jetpack_compose_learning.performanceoptimization.DeferredStateReads
 import com.danzucker.jetpack_compose_learning.performanceoptimization.KeysCustomLayout
 import com.danzucker.jetpack_compose_learning.performanceoptimization.LazyListPerformance
+import com.danzucker.jetpack_compose_learning.performanceoptimization.ListItemScreenRoot
+import com.danzucker.jetpack_compose_learning.performanceoptimization.LoadImageFromAsset
 import com.danzucker.jetpack_compose_learning.performanceoptimization.MyScreen
 import com.danzucker.jetpack_compose_learning.performanceoptimization.OverdrawDemo
 import com.danzucker.jetpack_compose_learning.performanceoptimization.mainsafety.BitmapCompressor
@@ -50,11 +52,12 @@ class MainActivity : ComponentActivity() {
                         }
                 ) { innerPadding ->
 
-                    LazyListPerformance(
+                    val loadImageFromAsset = LoadImageFromAsset(this)
+                    ListItemScreenRoot(
+                        loadImageFromAsset = loadImageFromAsset,
                         modifier = Modifier
                             .padding(innerPadding)
                     )
-
                 }
             }
         }
